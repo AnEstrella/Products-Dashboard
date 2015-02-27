@@ -1,0 +1,39 @@
+<h1>Listing Products</h1>
+<a href ="comments"><button>All Comments</button><a>
+<%= flash['notice'] %>
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Category</th>
+		<th>Actions</th>
+	</thead>
+	<% @products.each do |product| %>
+	<tr>
+		<td><%= product.name %></td>
+		<td><%= product.description %></td>
+		<td><%= product.pricing %></td>
+		<td><% case product.category_id 
+				when 1 %>
+					Electronics
+				<% when 2 %>
+					Household 
+				<% when 3 %>
+					Gardening
+				<% when 4 %>
+					Automotive
+				<% when 5 %>
+					Ninjas
+				<%end
+				%></td>
+		<td>
+			<a href="/products/<%= product.id %>">Show</a>
+			<a href="/products/<%= product.id %>/edit">Edit</a>
+			<a href="/products/<%= product.id %>" data-method="delete">Destroy</a>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<a href="/products/new">New Product</a>

@@ -1,0 +1,50 @@
+<h1>Editing Product</h1>
+<form action="/products/<%= @product_to_edit[:id] %>" method="post">
+	<ul>
+		<li>Name <input name=product[name] value="<%= @product_to_edit[:name] %>"><li>
+		<li>Description <input name=product[description] value="<%= @product_to_edit[:description] %>"><li>
+		<li>Price <input name=product[pricing] value="<%= @product_to_edit[:pricing] %>"><li>
+		<li>Category
+			<select name=product[category_id]>
+				<% case @product_to_edit[:category_id]%>
+				<% when 1 %>
+				<option selected="selected" value="1">Electronics</option>
+				<option value="2">Household</option>
+				<option value="3">Gardening</option>
+				<option value="4">Automotive</option>
+				<option value="5">Ninjas</option>
+				<% when 2 %>
+				<option value="1">Electronics</option>
+				<option selected="selected" value="2">Household</option>
+				<option value="3">Gardening</option>
+				<option value="4">Automotive</option>
+				<option value="5">Ninjas</option>
+				<% when 3 %>
+				<option value="1">Electronics</option>
+				<option value="2">Household</option>
+				<option selected="selected" value="3">Gardening</option>
+				<option value="4">Automotive</option>
+				<option value="5">Ninjas</option>
+				<% when 4 %>
+				<option value="1">Electronics</option>
+				<option value="2">Household</option>
+				<option value="3">Gardening</option>
+				<option selected="selected" value="4">Automotive</option>
+				<option value="5">Ninjas</option>
+				<% when 5 %>
+				<option value="1">Electronics</option>
+				<option value="2">Household</option>
+				<option value="3">Gardening</option>
+				<option value="4">Automotive</option>
+				<option selected="selected" value="5">Ninjas</option>
+				<%end%>
+		    </select>
+		</li>
+	</ul>
+	<input type="submit" value="Update">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+</form>
+<p>
+	<a href="/products/<%= @product_to_edit[:id] %>">Show</a>
+	<a href="/">Back</a>
+</p>

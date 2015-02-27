@@ -1,0 +1,37 @@
+<ul>
+	<li>Name: <%= @selected_product['name']%></li>
+	<li>Description: <%= @selected_product['description']%></li>
+	<li>Price: <%= @selected_product['pricing']%></li>
+	<li>Category: <% case @selected_product.category_id 
+				when 1 %>
+					Electronics
+				<% when 2 %>
+					Household 
+				<% when 3 %>
+					Gardening
+				<% when 4 %>
+					Automotive
+				<% when 5 %>
+					Ninjas
+				<% end %>
+	</li>
+</ul>
+
+<p>
+	<a href="/products/<%= @selected_product['id'] %>/edit">Edit</a>
+	<a href="/">Back</a>
+</p>
+
+<form action="/comments/create" method="post">
+	Comment:
+	<textarea name=comment[comment]></textarea>
+	<input type="hidden" name=comment[product_id] value="<%= @selected_product['id'] %>">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+	<input type="submit" value="Submit">
+</form>
+
+<table>
+	<% @product_comments.each do |comment| %>
+	<tr><td><%= comment.comment %> - <%= comment.created_at %></td></tr>
+	<% end %>
+</table>
